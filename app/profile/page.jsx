@@ -12,14 +12,14 @@ const MyProfile = () => {
   const [posts, setPosts] = useState([]);
   
   const handleEdit = (post) => {
-    router.push(`/update-prompt?id=${post._id}`);
+    router.push(`/update-post?id=${post._id}`);
   };
   
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm('Are you sure you want to delete this prompt?');
+    const hasConfirmed = confirm('Are you sure you want to delete this post?');
     if (hasConfirmed) {
       try {
-        await fetch(`/api/prompt/${post._id.toString()}`, {
+        await fetch(`/api/post/${post._id.toString()}`, {
           method: 'DELETE',
         });
 
@@ -49,7 +49,7 @@ const MyProfile = () => {
   return (
     <Profile 
       name="My"
-      desc="Welcome to your personalized profile page"
+      desc="Welcome to your personalized page. Check the clips you have posted."
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

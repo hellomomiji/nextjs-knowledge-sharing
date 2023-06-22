@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
+const PostCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState('');
   const { data: session } = useSession();
   const pathName = usePathname();
@@ -20,13 +20,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   }
 
   const handleCopy = () => {
-    setCopied(post.prompt);
-    navigator.clipboard.writeText(post.prompt);
+    setCopied(post.post);
+    navigator.clipboard.writeText(post.post);
     setTimeout(() => setCopied(''), 3000);
   };
 
   return (
-    <div className="prompt_card">
+    <div className="post_card">
       <div className="flex justify-between items-start gap-5">
         <div 
           className="flex-1 flex justify-start items-center gap-3 cursor-pointer"
@@ -48,7 +48,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         <div className="copy_btn" onClick={handleCopy}>
           <Image
             src={
-              copied === post.prompt
+              copied === post.post
                 ? '/assets/icons/tick.svg'
                 : '/assets/icons/copy.svg'
             }
@@ -57,7 +57,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           />
         </div>
       </div>
-      <p className="my-4 font-satosh text-sm text-gray-700">{post.prompt}</p>
+      <p className="my-4 font-satosh text-sm text-gray-700">{post.post}</p>
       <p
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
@@ -85,4 +85,4 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   );
 };
 
-export default PromptCard;
+export default PostCard;

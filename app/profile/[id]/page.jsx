@@ -28,7 +28,7 @@ const UserProfile = ({params}) => {
   return (
     <Profile 
       name={username}
-      desc={`Welcome to ${username} profile page`}
+      desc={`Welcome to ${username} profile page. Check the clips ${username} have posted.`}
       data={userPosts}
     />
   )
