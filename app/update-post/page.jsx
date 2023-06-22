@@ -5,44 +5,44 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-const UpdatePrompt = () => {
+const UpdatePost = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = searchParams.get('id');
+  const postId = searchParams.get('id');
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
-    prompt: '',
+    content: '',
     tag: '',
   });
 
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
+    const getPostDetails = async () => {
+      const response = await fetch(`/api/post/${postId}`);
       const data = await response.json();
 
       setPost({
-        prompt: data.prompt,
+        content: data.post,
         tag: data.tag,
       })
     }
     
-    if (promptId) {
-      getPromptDetails();
+    if (postId) {
+      getPostDetails();
     }
-  }, [promptId]);
+  }, [postId]);
 
-  const updatePrompt = async (e) => {
+  const updatePost = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
-    if (!promptId) return alert('Prompt Not Found.');
+    if (!postId) return alert('Post Not Found.');
     
     try {
-      const response = await fetch(`/api/prompt/${promptId}`, {
+      const response = await fetch(`/api/post/${postId}`, {
         method: 'PATCH',
         body: JSON.stringify({
-          prompt: post.prompt,
+          post: post.content,
           tag: post.tag
         })
       })
@@ -63,11 +63,11 @@ const UpdatePrompt = () => {
       post= {post}
       setPost= {setPost}
       submitting = {submitting}
-      handleSubmit={updatePrompt}
+      handleSubmit={updatePost}
     />
 
     
   )
 }
 
-export default UpdatePrompt
+export default UpdatePost

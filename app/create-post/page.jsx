@@ -6,25 +6,25 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-const CreatePrompt = () => {
+const CreatePost = () => {
   const router = useRouter();
   const {data: session} = useSession();
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
-    prompt: '',
+    content: '',
     tag: '',
   });
 
-  const createPrompt = async (e) => {
+  const createPost = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     
     try {
-      const response = await fetch('/api/prompt/new',
+      const response = await fetch('/api/post/new',
       {
         method: 'POST',
         body: JSON.stringify({
-          prompt: post.prompt,
+          post: post.content,
           userId: session?.user.id,
           tag: post.tag
         })
@@ -43,11 +43,11 @@ const CreatePrompt = () => {
       post= {post}
       setPost= {setPost}
       submitting = {submitting}
-      handleSubmit={createPrompt}
+      handleSubmit={createPost}
     />
 
     
   )
 }
 
-export default CreatePrompt
+export default CreatePost

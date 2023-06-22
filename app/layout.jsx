@@ -3,8 +3,8 @@ import '@styles/globals.css';
 import Provider from '@components/Provider';
 
 export const metadata = {
-  title: 'Shared Prompts',
-  description: 'Discover and Share AI Prompts',
+  title: 'Campus DevShare',
+  description: 'Join our vibrant community to discover, create, and share valuable learning tips, practical insights, and innovative ideas. Elevate your learning journey at Campus DevShare, where knowledge knows no boundaries',
 };
 
 const RootLayout = ({ children }) => {

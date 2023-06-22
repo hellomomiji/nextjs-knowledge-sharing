@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import PromptCard from './PromptCard';
+import PostCard from './PostCard';
 
-const PromptCardList = ({ data, handleTagClick }) => {
+const PostCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 prompt_layout">
+    <div className="mt-16 post_layout">
       {data.map((post) => (
-        <PromptCard
+        <PostCard
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
@@ -25,7 +25,7 @@ const Feed = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch('/api/prompt');
+    const response = await fetch('/api/post');
     const data = await response.json();
     setAllPosts(data);
   };
@@ -54,7 +54,7 @@ const Feed = () => {
       (item) =>
         regex.test(item.creator.username) ||
         regex.test(item.tag) ||
-        regex.test(item.prompt)
+        regex.test(item.post)
     );
   }
 
@@ -73,9 +73,9 @@ const Feed = () => {
 
       {
         searchText ? (
-          <PromptCardList data={searchResults} handleTagClick={handleTagClick}/>
+          <PostCardList data={searchResults} handleTagClick={handleTagClick}/>
         ) : (
-          <PromptCardList data={allPosts} handleTagClick={handleTagClick}/> 
+          <PostCardList data={allPosts} handleTagClick={handleTagClick}/> 
         )
       }
 

@@ -21,20 +21,20 @@ const Nav = () => {
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/logo.svg"
+          src="/assets/images/logo.png"
           alt="logo"
           width={30}
           height={30}
           className="object-contain"
         />
-        <p className="logo_text">Shared Prompts</p>
+        <p className="logo_text">Campus DevShare</p>
       </Link>
 
       {/* desktop navigation */}
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="/create-prompt" className="black_btn">
+            <Link href="/create-post" className="black_btn">
               Create Post
             </Link>
             <button type="button" onClick={signOut} className="outline_btn">
@@ -91,11 +91,11 @@ const Nav = () => {
                       My Profile
                     </Link>
                     <Link
-                      href="/create-prompt"
+                      href="/create-post"
                       className='dropdown_link'
                       onClick={() => setToggleDropDown(false)}
                       >
-                      Create Prompt
+                      Create Post
                     </Link>
                     <button
                       type='button'

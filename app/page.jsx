@@ -5,13 +5,11 @@ const Home = () => {
     <div>
       <section className="w-full flex-center flex-col">
         <h1 className="head_text text-center">
-          Discover & Share
-          <br className="max-md:hidden" />
-          <span className="orange_gradient text-center"> AI-Powered Prompts</span>
+          <span className="blue_gradient text-center">Campus DevShare</span>
         </h1>
         <p className="desc text-center">
-          Shared Prompts is an open-source AI prompting tool for modern world 
-          to discover, create and share creative prompts
+        Join our vibrant community to discover, create, and share valuable learning tips, practical insights, and innovative ideas. <br />
+        Elevate your learning journey at Campus DevShare, where knowledge knows no boundaries
         </p>
         
         <Feed />
