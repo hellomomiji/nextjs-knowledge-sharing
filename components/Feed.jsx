@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import PostCard from './PostCard';
-import { useSession } from 'next-auth/react';
 
 const PostCardList = ({ data, handleTagClick }) => {
   return (
@@ -25,29 +24,14 @@ const Feed = () => {
   
   const [searchResults, setSearchResults] = useState([]);
 
-  const {data:session} = useSession();
-  console.log(session?.user.id);
-
-  // const fetchPosts = async () => {
-  //   const response = await fetch('/api/post');
-  //   const data = await response.json();
-  //   setAllPosts(data);
-  // };
-
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, []);
+  const fetchPosts = async () => {
+    const response = await fetch('/api/post');
+    const data = await response.json();
+    setAllPosts(data);
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(`api/users/${session?.user.id}/posts`);
-      const data = await response.json();
-
-      setAllPosts(data);
-    }
-    if(session?.user.id) {
-      fetchPosts();
-    } 
+    fetchPosts();
   }, []);
 
   const handleSearchChange = (e) => {

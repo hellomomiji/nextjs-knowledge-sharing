@@ -12,18 +12,28 @@ const UserProfile = ({params}) => {
   console.log(params.id);
 
   const [userPosts, setUserPosts] = useState([]);
-  
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${params?.id}/posts`);
-      const data = await response.json();
 
-      setUserPosts(data);
-    }
-    if(params?.id) {
-      fetchPosts();
-    } 
-  }, [params.id]);
+  const fetchPosts = async () => {
+    const response = await fetch('/api/post');
+    const data = await response.json();
+    setUserPosts(data);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const response = await fetch(`/api/users/${params?.id}/posts`);
+  //     const data = await response.json();
+
+  //     setUserPosts(data);
+  //   }
+  //   if(params?.id) {
+  //     fetchPosts();
+  //   } 
+  // }, [params.id]);
   
   return (
     <Profile 
