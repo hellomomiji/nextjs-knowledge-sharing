@@ -25,7 +25,7 @@ const Feed = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch('/api/post');
+    const response = await fetch('/api/post', {cache: 'no-store'});
     const data = await response.json();
     setAllPosts(data);
   };
